@@ -1,77 +1,87 @@
-const customerSuccessCheckin = {
-    id: "customer-success-checkin",
+export default {
+    id: 'customer-success-checkin',
 
-    name: "Customer Success Check-In Email Generator",
+    name: 'Customer Success Check-in Generator',
 
     description:
-        "Generates warm and personalized customer success check-in emails using customer activity and milestones.",
+        'Generates professional customer success follow-up emails based on customer activity and milestones.',
 
-    category: "Sales",
+    category: 'Marketing',
+
+    icon: 'MessageSquare',
+
+    provider: 'openai',
+
+    defaultProvider: 'openai',
+
+    model: 'gpt-4o',
 
     inputs: [
         {
-            label: "Customer Name",
-            key: "customerName",
-            type: "text",
-            placeholder: "Acme Corp",
+            id: 'customerName',
+            label: 'Customer Name',
+            type: 'text',
+            placeholder: 'Acme Corp',
+            required: true,
         },
 
         {
-            label: "Contact Name",
-            key: "contactName",
-            type: "text",
-            placeholder: "Sarah",
+            id: 'contactName',
+            label: 'Contact Name',
+            type: 'text',
+            placeholder: 'Sarah Johnson',
+            required: true,
         },
 
         {
-            label: "Recent Activity",
-            key: "recentActivity",
-            type: "textarea",
-            placeholder: "Completed onboarding for 120 employees",
+            id: 'recentActivity',
+            label: 'Recent Activity',
+            type: 'textarea',
+            placeholder: 'Completed onboarding for 120 employees',
+            required: true,
         },
 
         {
-            label: "Usage Milestone",
-            key: "usageMilestone",
-            type: "text",
-            placeholder: "Reached 10,000 API calls",
+            id: 'usageMilestone',
+            label: 'Usage Milestone',
+            type: 'text',
+            placeholder: 'Reached 10,000 API calls',
+            required: true,
         },
 
         {
-            label: "CSM Goal",
-            key: "csmGoal",
-            type: "textarea",
-            placeholder: "Encourage feature adoption",
+            id: 'csmGoal',
+            label: 'Customer Success Goal',
+            type: 'textarea',
+            placeholder: 'Encourage feature adoption',
+            required: true,
         },
 
         {
-            label: "Tone",
-            key: "tone",
-            type: "text",
-            placeholder: "Warm and professional",
+            id: 'tone',
+            label: 'Tone',
+            type: 'text',
+            placeholder: 'Warm and professional',
+            required: true,
         },
     ],
 
-    prompt: (data) => `
-You are an expert Customer Success Manager.
+    systemPrompt: `
+You are a professional Customer Success Manager.
 
-Generate a warm, personalized customer check-in email.
+Generate a concise and professional customer success check-in email using the provided customer details.
 
-Customer Name: ${data.customerName}
-Contact Name: ${data.contactName}
-Recent Activity: ${data.recentActivity}
-Usage Milestone: ${data.usageMilestone}
-Goal: ${data.csmGoal}
-Tone: ${data.tone}
-
-Instructions:
-- Keep the email human and natural
-- Avoid robotic phrasing
-- Mention milestones naturally
-- Include encouragement
-- Add a soft CTA
-- Keep it concise
+Requirements:
+- Maintain a professional and friendly tone
+- Do not use emojis
+- Do not generate placeholder or gibberish text
+- Personalize the email naturally using the provided details
+- Mention the customer's recent activity and milestone
+- Include appreciation and encouragement
+- Include a soft offer for support
+- End with a professional closing
+- Format the response cleanly in markdown
 `,
-};
 
-export default customerSuccessCheckin;
+    outputType: 'markdown',
+}
