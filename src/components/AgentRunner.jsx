@@ -14,6 +14,7 @@ import {
 import ApiKeyBar from "./ApiKeyBar";
 import OutputRenderer from "./OutputRenderer";
 import ErrorCard from "./ErrorCard";
+import CharCounter from "./CharCounter";
 import VoiceInput from "./VoiceInput";
 import { useApiKey } from "../lib/useApiKey";
 import { streamAgent } from "../lib/llmAdapter";
@@ -330,12 +331,14 @@ export default function AgentRunner({ agent }) {
                     bg-gray-50 border border-gray-200 text-gray-900 placeholder:text-gray-400
                     focus:ring-1 focus:ring-accent focus:border-accent outline-none"
                 />
+                 
                 <VoiceInput
                   value={inputs[input.id] || ""}
                   onChange={(v) => updateInput(input.id, v)}
                   className="top-1/2 -translate-y-1/2 right-1.5"
                 />
               </div>
+              
             )}
 
             {input.type === "textarea" && (
@@ -355,6 +358,10 @@ export default function AgentRunner({ agent }) {
                   onChange={(v) => updateInput(input.id, v)}
                   className="top-2 right-2"
                 />
+                <CharCounter
+      value={inputs[input.id] || ""}
+      maxLength={5000}
+    />
               </div>
             )}
 
@@ -376,6 +383,10 @@ export default function AgentRunner({ agent }) {
                   onChange={(v) => updateInput(input.id, v)}
                   className="top-2 right-2"
                 />
+                <CharCounter
+      value={inputs[input.id] || ""}
+      maxLength={5000}
+    />
               </div>
             )}
 
@@ -479,9 +490,10 @@ export default function AgentRunner({ agent }) {
                 System Prompt
               </label>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] dark:text-text-muted text-gray-400">
-                  {customPrompt.length} chars
-                </span>
+                <CharCounter
+  value={customPrompt}
+  maxLength={5000}
+/>
                 {isPromptModified && (
                   <button
                     onClick={() => setCustomPrompt(agent.systemPrompt)}
