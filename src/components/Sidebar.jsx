@@ -18,30 +18,23 @@ export default function Sidebar({ open, onClose }) {
     fetchAgents()
   }, [])
 
-  const isSearching = sidebarSearchQuery.trim() !== ''
+const normalizedQuery = sidebarSearchQuery.trim().toLowerCase()
+const isSearching = normalizedQuery !== ''
 
-  useEffect(() => {
-    if (!isSearching) {
-      setSearchExpandedCategories({})
-    }
-  }, [isSearching])
+useEffect(() => {
+  if (!isSearching) {
+    setSearchExpandedCategories({})
+  }
+}, [isSearching])
 
-  useEffect(() => {
-    if (!isSearching) {
-      setSearchExpandedCategories({})
-    }
-  }, [isSearching])
-
-  // Filter agents based on search query
-  const filteredAgents = agents.filter(
-    (agent) =>
-      agent.name
-        .toLowerCase()
-        .includes(sidebarSearchQuery.toLowerCase()) ||
-      agent.category
-        .toLowerCase()
-        .includes(sidebarSearchQuery.toLowerCase())
-  )
+// Filter agents based on search query
+const filteredAgents = !normalizedQuery
+  ? agents
+  : agents.filter(
+      (agent) =>
+        agent.name.toLowerCase().includes(normalizedQuery) ||
+        agent.category.toLowerCase().includes(normalizedQuery)
+    )
 
   // Group agents by category
   const categories = filteredAgents.reduce((acc, agent) => {
