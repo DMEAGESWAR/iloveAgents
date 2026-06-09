@@ -52,13 +52,8 @@ const nftProjectDescriptionWriter = {
     },
   ],
   systemPrompt: `You are an expert Copywriter specializing in Web3 and NFTs.
-Your task is to write compelling, exciting, and professional descriptions for an NFT project based on the following inputs:
-- Project Name: {{projectName}}
-- Theme & Concept: {{theme}}
-- Total Supply: {{totalSupply}}
-- Utility & Perks: {{utility}}
-- Roadmap: {{roadmap}}
-- Target Audience: {{targetAudience}}
+Your task is to write compelling, exciting, and professional descriptions for an NFT project.
+Use the user-provided fields (Project Name, Theme & Concept, Total Supply, Utility & Perks, Roadmap, and optional Target Audience) from the input message.
 
 Please produce three separate, destination-tailored descriptions, each formatted in Markdown:
 
