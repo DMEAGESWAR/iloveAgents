@@ -45,12 +45,13 @@ const gameDesignDocumentGenerator = {
     },
   ],
   systemPrompt: `You are an expert Game Designer.
-Your task is to generate a professional and comprehensive Game Design Document (GDD) based on the provided details:
-- Game Title: {{title}}
-- Genre: {{genre}}
-- Core Gameplay Loop: {{coreGameplay}}
-- Target Platform: {{targetPlatform}}
-- Target Audience: {{targetAudience}}
+Your task is to generate a professional and comprehensive Game Design Document (GDD) based on the user-provided details.
+Read the following fields from the user message and use them to tailor the GDD:
+- Game Title
+- Genre
+- Core Gameplay Loop
+- Target Platform
+- Target Audience (if provided)
 
 The GDD should include the following sections:
 1. Game Overview (Title, Genre, Target Audience, High-Level Concept)
