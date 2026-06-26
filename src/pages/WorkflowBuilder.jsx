@@ -379,7 +379,7 @@ export default function WorkflowBuilder() {
       )}
 
       {/* Workflow Summary */}
-{(title || description || selectedAgents.length > 0) && (
+{(title.trim() || description.trim() || selectedAgents.length > 0) && (
   <div
     className="mb-6 rounded-lg border p-4
       dark:bg-surface-card dark:border-border
@@ -392,18 +392,22 @@ export default function WorkflowBuilder() {
     <div className="space-y-3 text-sm">
       <div className="flex justify-between">
         <span className="dark:text-text-muted text-gray-500">Title</span>
-        <span className="font-medium dark:text-text-primary text-gray-900">
-          {title || "Not provided"}
-        </span>
+       <span
+         className="font-medium dark:text-text-primary text-gray-900 max-w-[60%] text-right break-words"
+      >
+  {title.trim() || "Not provided"}
+</span>
       </div>
 
       <div className="flex justify-between">
         <span className="dark:text-text-muted text-gray-500">
           Description
         </span>
-        <span className="font-medium dark:text-text-primary text-gray-900">
-          {description || "Not provided"}
-        </span>
+        <span
+  className="font-medium dark:text-text-primary text-gray-900 max-w-[60%] text-right break-words"
+>
+  {description.trim() || "Not provided"}
+</span>
       </div>
 
       <div className="flex justify-between">
